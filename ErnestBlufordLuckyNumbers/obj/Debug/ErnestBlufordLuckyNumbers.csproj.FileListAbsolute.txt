@@ -1,0 +1,7 @@
+C:\Users\WeCanCodeIT\source\repos\ErnestBlufordLuckyNumbers\ErnestBlufordLuckyNumbers\obj\Debug\ErnestBlufordLuckyNumbers.csprojAssemblyReference.cache
+C:\Users\WeCanCodeIT\source\repos\ErnestBlufordLuckyNumbers\ErnestBlufordLuckyNumbers\obj\Debug\ErnestBlufordLuckyNumbers.csproj.CoreCompileInputs.cache
+C:\Users\WeCanCodeIT\source\repos\ErnestBlufordLuckyNumbers\ErnestBlufordLuckyNumbers\bin\Debug\ErnestBlufordLuckyNumbers.exe.config
+C:\Users\WeCanCodeIT\source\repos\ErnestBlufordLuckyNumbers\ErnestBlufordLuckyNumbers\bin\Debug\ErnestBlufordLuckyNumbers.exe
+C:\Users\WeCanCodeIT\source\repos\ErnestBlufordLuckyNumbers\ErnestBlufordLuckyNumbers\bin\Debug\ErnestBlufordLuckyNumbers.pdb
+C:\Users\WeCanCodeIT\source\repos\ErnestBlufordLuckyNumbers\ErnestBlufordLuckyNumbers\obj\Debug\ErnestBlufordLuckyNumbers.exe
+C:\Users\WeCanCodeIT\source\repos\ErnestBlufordLuckyNumbers\ErnestBlufordLuckyNumbers\obj\Debug\ErnestBlufordLuckyNumbers.pdb
