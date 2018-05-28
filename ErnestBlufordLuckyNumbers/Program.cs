@@ -10,76 +10,166 @@ namespace ErnestBlufordLuckyNumbers
     {
         static void Main(string[] args)
         {
-            int luckyNumberMax = 0;
-            int luckyNumberMin = 0;
-            int[] chosenNumbers = new int[6];
-            int[] randomNumber = new int[6];
-            Random r = new Random();
-            var prizeTickets = randomNumber.Except(chosenNumbers).Count();
-            string exitResp;
 
+            string exitResp = "yes";
+            Console.WriteLine(" Hey! You there! Would you like to play a game of Lucky Numbers?");
 
-
-
-            Console.WriteLine("Welcome to the carnival! Step right up! Hey! You there! Would you like to play a game of Lucky Numbers?");
             exitResp = Console.ReadLine().ToLower();
 
             while (exitResp.Equals("yes"))
-            { 
-            Console.WriteLine("Great! No time to delay! Let's keep it simple. Give me a starting number!");
-            luckyNumberMin = int.Parse(Console.ReadLine());
+            {
+                int luckyNumberMax = 0;
+                int luckyNumberMin = 0;
+                int[] chosenNumbers = new int[6];
+                int numPicker;
+                int[] randomNumber = new int[6];
+                Random r = new Random();
+                int jackpot = 1000;
 
-            Console.WriteLine("Okay, now give me an ending number!");
-            luckyNumberMax = int.Parse(Console.ReadLine());
+                int count = 0;
+
+                int singleRandom;
 
 
 
-            while ((luckyNumberMax == 0) || (luckyNumberMax <= luckyNumberMin) || (luckyNumberMax <= luckyNumberMin + 12))
+
+
+                Console.WriteLine("Great! No time to delay! Here's how it works.");
+                Console.WriteLine("You have a chance of winning up to {0} dollars!", jackpot);
+
+
+
+                Console.WriteLine("You're going to give me two numbers. Within those numbers, I'm going to write down 6 of them.");
+                Console.WriteLine("I'll give you 6 chances to guess what numbers I'm thinking of. The more you guess, the more you win!");
+                Console.WriteLine("");
+
+
+
+
+
+
+                Console.WriteLine("Give me a starting number!");
+                luckyNumberMin = int.Parse(Console.ReadLine());
+
+                Console.WriteLine("Okay, now give me an ending number!");
+                luckyNumberMax = int.Parse(Console.ReadLine());
+
+
+
+                while ((luckyNumberMax == 0) || (luckyNumberMax <= luckyNumberMin) || (luckyNumberMax <= luckyNumberMin + 6))
                 {
                     Console.WriteLine("Hm, that number is too low... Try something bigger than your starting number.");
                     luckyNumberMax = int.Parse(Console.ReadLine());
                 }
-                Console.WriteLine("Alright! You're doing great.  Choose 6 numbers between your starting number and your ending number.");
+                Console.WriteLine("Alright! You're doing great.");
 
-                //Gathering chosen numbers loop
+
+
+
+
+                //Code for obtaining user numbers
+
                 for (int i = 0; i < chosenNumbers.Length; i++)
                 {
+                    bool valid = false;
+                    while (valid == false)
+                    {
+                        Console.WriteLine("Please enter a number between {0} and {1}", luckyNumberMin, luckyNumberMax);
+                        numPicker = int.Parse(Console.ReadLine());
+                        if ((numPicker < luckyNumberMin) || (numPicker > luckyNumberMax))
+                        {
+                            Console.WriteLine("Number out of Range!");
+                            Console.Write("");
+                        }
+                        else if (chosenNumbers.Contains(numPicker))
+                        {
+                            Console.WriteLine("You have picked this number already!");
+                            Console.Write("");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Got it!");
+                            Console.WriteLine("");
 
-                 chosenNumbers[i] = int.Parse(Console.ReadLine());
-                Console.WriteLine("Got it!");
+                            chosenNumbers[i] = numPicker;
+                            valid = true;
+                        }
+                    }
+
                 }
-            Console.WriteLine("All done with that! Now the fun begins!");
 
-            Console.WriteLine("I'm thinking of {0} numbers, between {1} and {2}.", randomNumber.Length, luckyNumberMin, luckyNumberMax);
-            Console.WriteLine("If you guess correctly, you'll win a little pocket change. The better you guess the more you'll win!");
-            
-            for(int i =0; i<randomNumber.Length; i++)
-            {
-                randomNumber[i] = r.Next(luckyNumberMin +1 , luckyNumberMax -1);
-                Console.WriteLine(randomNumber[i]);
+
+
+
+
+
+                Console.WriteLine("All done with that! Now the fun begins!");
+                Console.WriteLine("These are your Numbers");
+                for (int i = 0; i < chosenNumbers.Length; i++)
+                {
+                    Console.WriteLine("Your Number:{0}", chosenNumbers[i]);
+                }
+
+                Console.WriteLine("Now, I will choose 6 numbers!");
+
+
+                // Code for determining Random Numbers
+                for (int i = 0; i < randomNumber.Length; i++)
+                {
+                    bool valid = false;
+                    while (valid == false)
+                    {
+
+                        singleRandom = r.Next(luckyNumberMin, luckyNumberMax);
+                        if (randomNumber.Contains(singleRandom))
+                        {
+                            singleRandom = r.Next(luckyNumberMin, luckyNumberMax);
+                        }
+                        else
+                        {
+
+                            randomNumber[i] = singleRandom;
+                            valid = true;
+                        }
+                    }
+
+                    Console.WriteLine("Lucky Number:{0}", randomNumber[i]);
+                }
+
+                for (int i = 0; i < chosenNumbers.Length; i++)
+                {
+                    if (chosenNumbers.Contains(randomNumber[i]))
+                    {
+                        count = count + 1;
+                    }
+                    else
+                    {
+                        jackpot = jackpot / 2;
+                    }
+                }
+
+                if (jackpot == 0)
+                {
+                    Console.WriteLine("Sorry you won {0} dollars.", jackpot);
+                }
+                else
+                {
+                    Console.WriteLine("You guessed {0} numbers correctly", count);
+                    Console.WriteLine("You won {0} dollars!", jackpot);
+
+                }
+
+
+
+                Console.WriteLine("Another game for you?");
+                exitResp = Console.ReadLine().ToLower();
             }
-
-             
-
-            //if (prizePot > 0)
-            //{
-                Console.WriteLine("Congratulations! You won {0} tickets!", prizeTickets);
-            //}
-            //else if (prizePayOut == 0)
-            //{
-            //    Console.WriteLine("So Sorry, you didn't win anything.");
-            //}
-            //else
-            //{
-            //    Console.WriteLine("What are you doing here?");
-            //}
-           }
-            Console.WriteLine("Another game for you?");
-            exitResp = Console.ReadLine().ToLower();
+            Console.WriteLine("Thanks for playing!");
         }
 
 
     }
 
-    
+
+
 }
